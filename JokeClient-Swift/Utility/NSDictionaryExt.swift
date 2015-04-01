@@ -15,7 +15,7 @@ extension NSDictionary
     {
         var obj : AnyObject! = self[key]
         
-        if obj == nil
+        if obj.isKindOfClass(NSNull)
         {
             return ""
         }
@@ -23,6 +23,7 @@ extension NSDictionary
         if obj.isKindOfClass(NSNumber)
         {
             var num = obj as NSNumber
+            
             return num.stringValue
         }
         

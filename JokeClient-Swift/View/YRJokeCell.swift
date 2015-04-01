@@ -49,7 +49,7 @@ class YRJokeCell: UITableViewCell {
     {
         super.layoutSubviews()
        // var uid = self.data["id"] as String
-        var user : AnyObject!  = self.data["user"]
+        var user : AnyObject! = self.data["user"]
         
         if user as NSObject != NSNull()
         {
