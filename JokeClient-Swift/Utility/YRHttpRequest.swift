@@ -32,7 +32,7 @@ class YRHttpRequest: NSObject {
             {
                 dispatch_async(dispatch_get_main_queue(),
                 {
-                    println(error)
+                    print(error)
                     completionHandler(data:NSNull())
                 })
             }

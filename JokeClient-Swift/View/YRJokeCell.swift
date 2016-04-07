@@ -35,7 +35,7 @@ class YRJokeCell: UITableViewCell {
        
         self.selectionStyle = .None
         
-        var tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
+        let tap = UITapGestureRecognizer(target: self, action: "imageViewTapped:")
         
         self.pictureView!.addGestureRecognizer(tap)
     }
@@ -51,17 +51,17 @@ class YRJokeCell: UITableViewCell {
        // var uid = self.data["id"] as String
         var user : AnyObject! = self.data["user"]
         
-        if user as NSObject != NSNull()
+        if user as! NSObject != NSNull()
         {
-            var userDict = user as NSDictionary
+            var userDict = user as! NSDictionary
             
             self.nickLabel!.text = userDict["login"] as NSString
             
             var icon : AnyObject! = userDict["icon"] //as NSString
             
-            if icon as NSObject != NSNull()
+            if icon as! NSObject != NSNull()
             {
-                var userIcon = icon as String
+                var userIcon = icon as! String
                 
                 var userId =  userDict["id"] as NSString
                 
@@ -120,7 +120,7 @@ class YRJokeCell: UITableViewCell {
         
         var votes :AnyObject!  = self.data["votes"]
         
-        if votes as NSObject == NSNull()
+        if votes as! NSObject == NSNull()
         {
             self.likeLabel!.text = "顶(0)"
             
@@ -128,7 +128,7 @@ class YRJokeCell: UITableViewCell {
         }
         else
         {
-            var votesDict = votes as NSDictionary
+            var votesDict = votes as! NSDictionary
             
             var like  = votesDict.stringAttributeForKey("up") as String
             
@@ -147,11 +147,11 @@ class YRJokeCell: UITableViewCell {
     
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
-        var content = data.stringAttributeForKey("content")
+        let content = data.stringAttributeForKey("content")
         
-        var height = content.stringHeightWith(17,width:300)
+        let height = content.stringHeightWith(17,width:300)
         
-        var imgSrc = data.stringAttributeForKey("image") as NSString
+        let imgSrc = data.stringAttributeForKey("image") as NSString
         
         if imgSrc.length == 0
         {

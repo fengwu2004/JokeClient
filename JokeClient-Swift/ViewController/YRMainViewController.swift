@@ -29,7 +29,7 @@ class YRMainViewController: UITabBarController
         self.title = "最新"
     }
 
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,9 +51,9 @@ class YRMainViewController: UITabBarController
         
         self.tabBar.hidden = true
         
-        var width = self.view.frame.size.width
+        let width = self.view.frame.size.width
         
-        var height = self.view.frame.size.height
+        let height = self.view.frame.size.height
         
         self.myTabbar = UIView(frame: CGRectMake(0, height - 49, width, 49))
         
@@ -67,19 +67,19 @@ class YRMainViewController: UITabBarController
         
         self.view.addSubview(self.myTabbar!)
         
-        var count = self.itemArray.count
+        let count = self.itemArray.count
         
         for var index = 0; index < count; index++
         {
-            var btnWidth = (CGFloat)(index*80)
+            let btnWidth = (CGFloat)(index*80)
             
-            var button  = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+            let button  = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
             
             button.frame = CGRectMake(btnWidth, 0,80,49)
             
             button.tag = index+100
             
-            var title = self.itemArray[index]
+            let title = self.itemArray[index]
             
             button.setTitle(title, forState: UIControlState.Normal)
             
@@ -100,19 +100,19 @@ class YRMainViewController: UITabBarController
     
     func initViewControllers()
     {
-        var vc1 = YRJokeTableViewController()
+        let vc1 = YRJokeTableViewController()
         
         vc1.jokeType = .NewestJoke
         
-        var vc2 = YRJokeTableViewController()
+        let vc2 = YRJokeTableViewController()
         
         vc2.jokeType = .HotJoke
         
-        var vc3 = YRJokeTableViewController()
+        let vc3 = YRJokeTableViewController()
         
         vc3.jokeType = .ImageTruth
         
-        var vc4 = YRAboutViewController(nibName: "YRAboutViewController", bundle: nil)
+        let vc4 = YRAboutViewController(nibName: "YRAboutViewController", bundle: nil)
         
         self.viewControllers = [vc1, vc2, vc3, vc4]
     }
@@ -124,7 +124,7 @@ class YRMainViewController: UITabBarController
         
         for var i = 0;i < 4;i++
         {
-            var button = self.view.viewWithTag(i + 100) as UIButton
+            var button = self.view.viewWithTag(i + 100) as! UIButton
             
             if button.tag == index
             {
@@ -137,7 +137,7 @@ class YRMainViewController: UITabBarController
         }
         
         UIView.animateWithDuration(0.3,
-        {
+        animations: {
             self.slider!.frame = CGRectMake(CGFloat(index-100)*80,0,80,49)
         })
         
