@@ -40,15 +40,15 @@ class YRCommnentsCell: UITableViewCell {
         // var uid = self.data["id"] as String
         var user : AnyObject!  = self.data["user"]
         
-        if user as NSObject != NSNull()
+        if user as! NSObject != NSNull()
         {
-            var userDict = user as NSDictionary
+            var userDict = user as! NSDictionary
             self.nickLabel!.text = userDict["login"] as NSString
             
             var icon : AnyObject! = userDict["icon"]
-            if icon as NSObject != NSNull()
+            if icon as! NSObject != NSNull()
             {
-                var userIcon = icon as String
+                var userIcon = icon as! String
                 var userId =  userDict["id"] as NSString
                 var prefixUserId = userId.substringToIndex(3)
                 var userImageURL = "http://pic.moumentei.com/system/avtnew/\(prefixUserId)/\(userId)/thumb/\(userIcon)"
@@ -86,8 +86,8 @@ class YRCommnentsCell: UITableViewCell {
     
     class func cellHeightByData(data:NSDictionary)->CGFloat
     {
-        var content = data.stringAttributeForKey("content")
-        var height = content.stringHeightWith(17,width:300)
+        let content = data.stringAttributeForKey("content")
+        let height = content.stringHeightWith(17,width:300)
         return 53.0 + height + 24.0
     }
 

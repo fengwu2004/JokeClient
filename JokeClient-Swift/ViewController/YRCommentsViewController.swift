@@ -28,7 +28,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -41,13 +41,13 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func setupViews()
     {
-        var width = self.view.frame.size.width
-        var height = self.view.frame.size.height
+        let width = self.view.frame.size.width
+        let height = self.view.frame.size.height
         self.tableView = UITableView(frame:CGRectMake(0,0,width,height))
         self.tableView!.delegate = self;
         self.tableView!.dataSource = self;
         self.tableView!.separatorStyle = UITableViewCellSeparatorStyle.None
-        var nib = UINib(nibName:"YRCommnentsCell", bundle: nil)
+        let nib = UINib(nibName:"YRCommnentsCell", bundle: nil)
         
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         
@@ -65,13 +65,13 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         self.refreshView!.startLoading()
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
             
-            if data as NSObject == NSNull()
+            if data as! NSObject == NSNull()
             {
                 UIView.showAlertView("提示",message:"加载失败")
                 return
             }
 
-            var arr = data["items"] as NSArray
+            var arr = data["items"] as! NSArray
             if arr.count  == 0
             {
                 UIView.showAlertView("提示",message:"暂无新评论哦")
@@ -105,7 +105,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
         
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? YRCommnentsCell
         var index = indexPath.row
-        var data = self.dataArray[index] as NSDictionary
+        var data = self.dataArray[index] as! NSDictionary
         cell!.data  = data
         return cell!
     }
@@ -113,7 +113,7 @@ class YRCommentsViewController: UIViewController,UITableViewDelegate,UITableView
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat
     {
         var index = indexPath!.row
-        var data = self.dataArray[index] as NSDictionary
+        var data = self.dataArray[index] as! NSDictionary
         return  YRCommnentsCell.cellHeightByData(data)
     }
 //    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)

@@ -55,9 +55,9 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
     
     func setupViews()
     {
-        var width = self.view.frame.size.width
+        let width = self.view.frame.size.width
         
-        var height = self.view.frame.size.height
+        let height = self.view.frame.size.height
         
         self.tableView = UITableView(frame:CGRectMake(0, 64, width, height - 49 - 64))
         
@@ -67,7 +67,7 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
         
         self.tableView?.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        var nib = UINib(nibName:"YRJokeCell", bundle: nil)
+        let nib = UINib(nibName:"YRJokeCell", bundle: nil)
        
         self.tableView?.registerNib(nib, forCellReuseIdentifier: identifier)
         
@@ -91,14 +91,14 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
         
         YRHttpRequest.requestWithURL(url,completionHandler:{ data in
            
-            if data as NSObject == NSNull()
+            if data as! NSObject == NSNull()
             {
                 UIView.showAlertView("提示",message:"加载失败")
                
                 return
             }
             
-            var arr = data["items"] as NSArray
+            var arr = data["items"] as! NSArray
             
             for data : AnyObject  in arr
             {
@@ -153,7 +153,7 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
         
         var index = indexPath.row
         
-        var data = self.dataArray[index] as NSDictionary
+        var data = self.dataArray[index] as! NSDictionary
         
         cell!.data = data
         
@@ -164,7 +164,7 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
     {
         var index = indexPath!.row
         
-        var data = self.dataArray[index] as NSDictionary
+        var data = self.dataArray[index] as! NSDictionary
         
         return YRJokeCell.cellHeightByData(data)
     }
@@ -173,7 +173,7 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
     {
         var index = indexPath!.row
         
-        var data = self.dataArray[index] as NSDictionary
+        var data = self.dataArray[index] as! NSDictionary
         
         var commentsVC = YRCommentsViewController(nibName :nil, bundle: nil)
         
@@ -189,7 +189,7 @@ class  YRJokeTableViewController:UIViewController, YRRefreshViewDelegate, UITabl
     
     func imageViewTapped(noti:NSNotification)
     {
-        var imageURL = noti.object as String
+        var imageURL = noti.object as! String
         
         var imgVC = YRImageViewController(nibName: nil, bundle: nil)
         
