@@ -8,9 +8,16 @@
 
 import Foundation
 
+<<<<<<< HEAD
 test4 时间10：51
+<<<<<<< HEAD
 1
 2
 3
 4
 5
+=======
+=======
+test2 时间10：51
+>>>>>>> parent of 5197fe3... test3
+>>>>>>> parent of 2fbfa00... 1
